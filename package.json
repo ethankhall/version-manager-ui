@@ -1,5 +1,5 @@
 {
-  "name": "angular-quickstart",
+  "name": "version-manager-ui",
   "version": "1.0.0",
   "scripts": {
     "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
