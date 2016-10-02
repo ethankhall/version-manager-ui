@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { CromProjectService, ProjectDetails } from "./crom-project.services";
+import { CromProjectService, ProjectDetails } from "../rest-api/crom-project.services";
 
 @Component({
     moduleId: module.id,

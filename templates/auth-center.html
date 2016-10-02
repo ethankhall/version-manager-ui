@@ -1,0 +1,7 @@
+<div>
+    <div [hidden]="!loggedIn">
+        LogOut
+    </div>
+
+    <a [hidden]="loggedIn" [href]="getGoogleLoginUrl()">LogIn</a>
+</div>
