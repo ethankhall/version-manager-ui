@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Http, Headers } from "@angular/http";
 import { BaseUrlService } from "./base-url.services";
-import { AuthenticationService } from "../auth/authentication.services";
+import { AuthenticationService } from "../authentication.services";
 import "rxjs/add/operator/toPromise";
 
 @Injectable()

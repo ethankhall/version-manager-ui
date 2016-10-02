@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 import { OnInit } from "@angular/core";
 
-import { AuthenticationService } from "../auth/authentication.services";
-import { BaseUrlService } from "../rest-api/base-url.services";
+import { AuthenticationService } from "../services/authentication.services";
+import { BaseUrlService } from "../services/rest-api/base-url.services";
 
 @Component({
     moduleId: module.id,

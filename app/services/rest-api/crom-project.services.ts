@@ -4,8 +4,8 @@ import { Http, URLSearchParams, Headers } from "@angular/http";
 import "rxjs/add/operator/toPromise";
 
 import { BaseUrlService } from "./base-url.services";
-import { AuthenticationService } from "../auth/authentication.services";
-import { ProjectDetails } from "../models/crom.models";
+import { AuthenticationService } from "../authentication.services";
+import { ProjectDetails } from "../../models/crom.models";
 
 @Injectable()
 export class CromProjectService {

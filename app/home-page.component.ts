@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 
-import { CromProjectService } from "./rest-api/crom-project.services";
-import { AuthenticationService } from "./auth/authentication.services";
-import { UserService } from "./rest-api/user.services";
+import { CromProjectService } from "./services/rest-api/crom-project.services";
+import { AuthenticationService } from "./services/authentication.services";
+import { UserService } from "./services/rest-api/user.services";
 
 @Component({
     moduleId: module.id,

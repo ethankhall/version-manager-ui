@@ -1,12 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router, Params } from "@angular/router";
-import { CromProjectService } from "../rest-api/crom-project.services";
+import { CromProjectService } from "../services/rest-api/crom-project.services";
 
 @Component({
     moduleId: module.id,
-    templateUrl: '/templates/project-details.html'
+    templateUrl: '/templates/project-details/repo.html'
 })
-export class CromRepoComponent implements OnInit {
+export class RepoComponent implements OnInit {
 
     projectName: string;
     repoName: string;

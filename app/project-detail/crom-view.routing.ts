@@ -1,5 +1,5 @@
-import { CromRepoComponent } from "./crom-repo.component";
-import { CromProjectComponent } from "./crom-project.component";
+import { RepoComponent } from "./repo.component";
+import { ProjectComponent } from "./project.component";
 import { Routes, RouterModule } from "@angular/router";
 import { ModuleWithProviders } from "@angular/core";
 
@@ -8,11 +8,11 @@ export const projectRoutes: Routes = [{
     children: [
         {
             path: '',
-            component: CromProjectComponent
+            component: ProjectComponent
         },
         {
             path: ':repoName',
-            component: CromRepoComponent
+            component: RepoComponent
         }
     ]
 }];
