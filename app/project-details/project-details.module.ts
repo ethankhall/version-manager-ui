@@ -5,7 +5,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { ProjectComponent } from "./project.component";
 import { RepoComponent } from "./repo.component";
 import { ServicesModule } from "../services/services.module";
-import { projectRouting } from "./crom-view.routing";
+import { projectRouting } from "./project-details.routing";
 
 @NgModule({
     imports: [BrowserModule, HttpModule, ServicesModule, projectRouting],
