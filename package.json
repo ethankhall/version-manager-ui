@@ -2,8 +2,8 @@
   "name": "version-manager-ui",
   "version": "1.0.0",
   "scripts": {
-    "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
-    "lite": "lite-server",
+    "start": "tsc && concurrently \"tsc -w\" \"lite-server -c light-server-config.js\" ",
+    "lite": "lite-server -c light-server-config.js",
     "postinstall": "typings install",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
@@ -32,7 +32,7 @@
     "concurrently": "^3.0.0",
     "lite-server": "^2.2.2",
     "typescript": "^2.0.3",
-    "typings":"^1.4.0"
+    "typings": "^1.4.0",
+    "cors": "^2.8.1"
   }
 }
-
