@@ -1,13 +1,18 @@
 import { NgModule } from "@angular/core";
-
 import { AuthenticationService } from "./authentication.services";
 import { BaseUrlService } from "./rest-api/base-url.services";
 import { UserService } from "./rest-api/user.services";
-import { CromProjectService } from "./rest-api/crom-project.services";
+import { ProjectApiService } from "./rest-api/project-api.services";
 import { CookieService } from "angular2-cookie/services/cookies.service";
+import { RepoApiService } from "./rest-api/repo-api.services";
+import { VersionApiService } from "./rest-api/version-api.services";
 
 @NgModule({
     declarations: [],
-    providers: [BaseUrlService, UserService, CromProjectService, CookieService, AuthenticationService]
+    providers: [
+        BaseUrlService, UserService, ProjectApiService, CookieService,
+        AuthenticationService, RepoApiService, VersionApiService
+    ]
 })
-export class ServicesModule {}
+export class ServicesModule {
+}

@@ -1,7 +1,7 @@
 <div>
-    <h3>{{projectDetails?.name}}</h3>
-    <h4>Repositories:</h4>
-    <ul *ngIf="projectDetails" >
-        <li *ngFor="let repo of projectDetails.repos"><a (click)="toRepo(repo.name)">{{repo.name}}</a></li>
-    </ul>
+    <h3><a (click)="parentRoute()">{{projectName}}</a>/{{repoName}}</h3>
+    <div>Url: {{repoDetails?.url}}</div>
+    <br />
+    <div>Latest Version: <a (click)="toVersion(latestVersion.commitId)">{{latestVersion?.version}}</a></div>
+
 </div>

@@ -16,6 +16,7 @@ module.exports = {
             cors(),
             fallback({
                 index: '/index.html',
+                disableDotRule: true,
                 htmlAcceptHeaders: ['text/html', 'application/xhtml+xml']
             })
         ]

@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 
-import { CromProjectService } from "./services/rest-api/crom-project.services";
+import { ProjectApiService } from "./services/rest-api/project-api.services";
 import { AuthenticationService } from "./services/authentication.services";
 import { UserService } from "./services/rest-api/user.services";
 
@@ -14,7 +14,7 @@ export class HomePageComponent implements OnInit{
 
     projects: string[];
 
-    constructor(private router: Router, private cromProjectService: CromProjectService, private userService: UserService,
+    constructor(private router: Router, private cromProjectService: ProjectApiService, private userService: UserService,
                 private authService: AuthenticationService) {
     }
 

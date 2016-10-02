@@ -30,4 +30,8 @@ export class AuthenticationService {
         headers.set("X-AUTH-TOKEN", this.getCookie());
         return headers;
     }
+
+    createAuthHeaders(): Headers {
+        return this.addAuthHeaders(new Headers())
+    }
 }

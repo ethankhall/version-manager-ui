@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router, Params } from "@angular/router";
 
-import { CromProjectService } from "../services/rest-api/crom-project.services";
+import { ProjectApiService } from "../services/rest-api/project-api.services";
 import { ProjectDetails } from "../models/crom.models";
 
 @Component({
@@ -13,7 +13,7 @@ export class ProjectComponent implements OnInit {
 
     projectDetails: ProjectDetails;
 
-    constructor(private route: ActivatedRoute, private router: Router, private cromProjectService: CromProjectService) {
+    constructor(private route: ActivatedRoute, private router: Router, private cromProjectService: ProjectApiService) {
     }
 
     toRepo(repoName: string): void {

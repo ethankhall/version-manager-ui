@@ -6,9 +6,9 @@ import { VersionApiService } from "../services/rest-api/version-api.services";
 
 @Component({
     moduleId: module.id,
-    templateUrl: '/templates/project-details/repo.html'
+    templateUrl: '/templates/project-details/version.html'
 })
-export class RepoComponent implements OnInit {
+export class VersionComponent implements OnInit {
 
     projectName: string;
     repoName: string;
@@ -19,20 +19,21 @@ export class RepoComponent implements OnInit {
                 private versionApi: VersionApiService) {
     }
 
-    parentRoute(): void {
+    toRepo(): void {
         this.router.navigate(["../"], { relativeTo: this.route })
     }
 
+    toProject(): void {
+        this.router.navigate(["../../"], { relativeTo: this.route })
+    }
+
     toVersion(id: String): void {
-        console.log("onclick");
-        this.router.navigate([id], { relativeTo: this.route })
+
     }
 
     ngOnInit(): void {
         this.route.parent.params.forEach((params: Params) => {
             this.projectName = params['projectName'];
-        });
-        this.route.params.forEach((params: Params) => {
             this.repoName = params['repoName'];
         });
 

@@ -1,8 +1,12 @@
 app/*/*.js
 app/*/*.js.map
 
+app/**/*.js
+app/**/*.js.map
+
 app/*.js
 app/*.js.map
+
 
 # Created by https://www.gitignore.io/api/node,grunt
 

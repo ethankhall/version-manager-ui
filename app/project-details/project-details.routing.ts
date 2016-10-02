@@ -1,7 +1,9 @@
-import { RepoComponent } from "./repo.component";
-import { ProjectComponent } from "./project.component";
 import { Routes, RouterModule } from "@angular/router";
 import { ModuleWithProviders } from "@angular/core";
+
+import { RepoComponent } from "./repo.component";
+import { ProjectComponent } from "./project.component";
+import { VersionComponent } from "./version.component";
 
 export const projectRoutes: Routes = [{
     path: 'project/:projectName',
@@ -12,7 +14,16 @@ export const projectRoutes: Routes = [{
         },
         {
             path: ':repoName',
-            component: RepoComponent
+            children: [
+                {
+                    path: '',
+                    component: RepoComponent
+                },
+                {
+                    path: ':versionId',
+                    component: VersionComponent
+                }
+            ]
         }
     ]
 }];

@@ -8,7 +8,7 @@ import { AuthenticationService } from "../authentication.services";
 import { ProjectDetails } from "../../models/crom.models";
 
 @Injectable()
-export class CromProjectService {
+export class ProjectApiService {
     constructor(private http: Http, private baseUrl: BaseUrlService, private authService: AuthenticationService) {
     }
 
@@ -19,7 +19,7 @@ export class CromProjectService {
         return this.http.get(this.baseUrl.createFullUrl("/api/v1/projects"), {search: params})
             .toPromise()
             .then(response => (response.json().projectDetails as ProjectDescription[]).map(detail => detail.name))
-            .catch(CromProjectService.handleError);
+            .catch(ProjectApiService.handleError);
     }
 
     getProjectDetails(name: String): Promise<ProjectDetails> {
@@ -27,7 +27,7 @@ export class CromProjectService {
         return this.http.get(this.baseUrl.createFullUrl("/api/v1/project/" + name), { headers: headers })
             .toPromise()
             .then(response => response.json() as ProjectDetails)
-            .catch(CromProjectService.handleError);
+            .catch(ProjectApiService.handleError);
     }
 
     private static handleError(error: any): Promise<any> {

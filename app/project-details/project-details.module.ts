@@ -6,9 +6,10 @@ import { ProjectComponent } from "./project.component";
 import { RepoComponent } from "./repo.component";
 import { ServicesModule } from "../services/services.module";
 import { projectRouting } from "./project-details.routing";
+import { VersionComponent } from "./version.component";
 
 @NgModule({
     imports: [BrowserModule, HttpModule, ServicesModule, projectRouting],
-    declarations: [ProjectComponent, RepoComponent]
+    declarations: [ProjectComponent, RepoComponent, VersionComponent]
 })
 export class ProjectDetailsModule {}
