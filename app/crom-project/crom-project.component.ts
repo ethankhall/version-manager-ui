@@ -4,7 +4,7 @@ import { CromProjectService, ProjectDetails } from "./crom-project.services";
 @Component({
     moduleId: module.id,
     selector: 'crom-project',
-    templateUrl: 'templates/project-list.html'
+    templateUrl: '/templates/project-list.html'
 })
 export class CromProjectComponent implements OnInit {
     projects: ProjectDetails[];

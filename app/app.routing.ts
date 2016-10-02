@@ -6,7 +6,7 @@ import { HomePageComponent } from "./home-page.component";
 
 const appRoutes: Routes = [
     {
-        path: 'project',
+        path: 'projects',
         component: CromProjectComponent
     },
     {
