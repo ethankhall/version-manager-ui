@@ -1,15 +1,15 @@
 import { Component } from "@angular/core";
 import { OnInit } from "@angular/core";
 
-import { AuthenticationService } from "./authentication.services";
+import { AuthenticationService } from "../auth/authentication.services";
 import { BaseUrlService } from "../rest-api/base-url.services";
 
 @Component({
     moduleId: module.id,
-    selector: 'auth-center',
-    templateUrl: '/templates/auth-center.html'
+    selector: 'nav-bar',
+    templateUrl: '/templates/nav-bar.html'
 })
-export class AuthCenterComponent implements OnInit {
+export class NavBarComponent implements OnInit {
 
     loggedIn: boolean = false;
 
@@ -17,6 +17,11 @@ export class AuthCenterComponent implements OnInit {
 
     getGoogleLoginUrl(): string {
         return this.baseUrl.createFullUrl("/auth/google")
+    }
+
+    logout(): void {
+        this.authService.logout();
+        this.loggedIn = false;
     }
 
     ngOnInit(): void {

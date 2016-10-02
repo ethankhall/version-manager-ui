@@ -1,23 +1,17 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { HttpModule } from "@angular/http";
-
-import { routing } from "./app.routing";
-
-import { CromProjectService } from "./rest-api/crom-project.services";
-import { AuthenticationService } from "./auth/authentication.services";
-import { CookieService } from "angular2-cookie/services/cookies.service";
-import { BaseUrlService } from "./rest-api/base-url.services";
-
+import { routing, appRoutingProviders } from "./app.routing";
+import { CromProjectModule } from "./crom-views/crom-project.module";
 import { AppComponent } from "./app.component";
-import { CromProjectComponent } from "./crom-project/crom-project.component";
 import { HomePageComponent } from "./home-page.component";
-import { AuthCenterComponent } from "./auth/auth-center.component";
+import { NavBarComponent } from "./nav-bar/nav-bar.component";
+import { ServicesModule } from "./services/services.module";
 
 @NgModule({
-    imports: [BrowserModule, HttpModule, routing],
-    declarations: [AppComponent, CromProjectComponent, HomePageComponent, AuthCenterComponent],
-    providers: [BaseUrlService, CromProjectService, CookieService, AuthenticationService],
+    imports: [BrowserModule, HttpModule, routing, CromProjectModule, ServicesModule],
+    declarations: [AppComponent, HomePageComponent, NavBarComponent],
+    providers: [appRoutingProviders],
     bootstrap: [AppComponent]
 })
 export class AppModule {

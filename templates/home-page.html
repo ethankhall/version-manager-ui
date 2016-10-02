@@ -1,1 +1,6 @@
-<div></div>
+<div>
+    <h3>Projects:</h3>
+    <ul>
+        <li *ngFor="let project of projects"><a (click)="toProject(project)">{{project}}</a></li>
+    </ul>
+</div>
