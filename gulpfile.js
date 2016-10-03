@@ -8,6 +8,9 @@ const tsProject = tsc.createProject("tsconfig.json");
 const reporter = tsc.reporter;
 var concat = require('gulp-concat');
 var minify = require('gulp-minify');
+var sysBuilder = require('systemjs-builder');
+var connect = require('gulp-connect');
+
 
 /**
  * Remove build directory.
@@ -20,40 +23,40 @@ gulp.task('clean', function (cb) {
  * Compile TypeScript sources and create sourcemaps in build directory.
  */
 gulp.task("compile", function () {
-    var tsResult = gulp.src("app/**/*.ts")
+    return gulp.src("app/**/*.ts")
         .pipe(sourcemaps.init())
-        .pipe(tsProject(reporter));
-    return tsResult.js
-        .pipe(sourcemaps.write(".", {sourceRoot: '/app'}))
+        .pipe(tsProject(reporter))
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest("build"));
+});
+
+gulp.task('bundle:js', ["compile", "libs"], function () {
+    var builder = new sysBuilder('./build/', './systemjs.config.js');
+    return builder.buildStatic('main.js', 'public/js/app.js', {minify: false, encodeNames: false});
 });
 
 /**
  * Copy all resources that are not TypeScript files into build directory.
  */
-gulp.task("resources", function () {
-    return gulp.src(["app/**/*", "!**/*.ts", "index.html", "systemjs.config.js", "styles.css"])
-        .pipe(gulp.dest("build"));
+gulp.task("bundle:resources", function () {
+    return gulp.src(["app/**/*.html", "app/*.html", "index.html", "node_modules/bootstrap/dist/css/bootstrap.min.css", "styles.css"])
+        .pipe(gulp.dest("public"));
 });
 
-gulp.task('scripts', ["libs"], function() {
-    return gulp.src('build/lib/*/*.js')
-        .pipe(concat('all.js'))
-        .pipe(gulp.dest('build/js'));
+gulp.task('bundle:libs', function () {
+    return gulp.src([
+        'node_modules/core-js/client/shim.min.js',
+        'node_modules/zone.js/dist/zone.js',
+        'node_modules/reflect-metadata/Reflect.js',
+        'node_modules/systemjs/dist/system.src.js',
+        'systemjs.config.js'
+    ])
+    // .pipe(minify())
+        .pipe(concat('vendors.js'))
+        .pipe(gulp.dest('public/js'));
 });
 
-gulp.task('compress', ["libs"], function() {
-    gulp.src('build/lib/*/*.js')
-        .pipe(minify({
-            ext:{
-                src:'-debug.js',
-                min:'.js'
-            },
-            exclude: ['tasks'],
-            ignoreFiles: ['.combo.js', '-min.js']
-        }))
-        .pipe(gulp.dest('build/js'))
-});
+gulp.task('bundle', ['bundle:js', 'bundle:resources', 'bundle:libs']);
 
 /**
  * Copy all required libraries into build directory.
@@ -91,6 +94,14 @@ gulp.task('watch', function () {
 /**
  * Build the project.
  */
-gulp.task("build", ['compile', 'resources', 'libs', "compress"], function () {
+gulp.task("build", ['compile', 'resources', 'libs', "bootScript"], function () {
     console.log("Building the project ...");
+});
+
+gulp.task('serve', function() {
+    connect.server({
+        root: 'public',
+        port: 3000,
+        fallback: 'index.html'
+    });
 });

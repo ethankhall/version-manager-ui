@@ -8,7 +8,7 @@ app/*.js
 app/*.js.map
 
 /build
-
+/public
 
 # Created by https://www.gitignore.io/api/node,grunt
 
