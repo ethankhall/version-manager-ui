@@ -10,15 +10,15 @@ export class UserService {
     }
 
     getUserWatches(): Promise<string[]> {
-        var headers = this.authService.addAuthHeaders(new Headers());
+        let headers = this.authService.addAuthHeaders(new Headers());
         return this.http.get(this.baseUrl.createFullUrl("/api/v1/user/watches"), { headers: headers })
             .toPromise()
             .then(request => (request.json().watches as Watch[]).map(watch => watch.projectName))
-            .catch(UserService.handleError)
+            .catch(UserService.handleError);
     }
 
     private static handleError(error: any): Promise<any> {
-        console.error('An error occurred', error); // for demo purposes only
+        console.error("An error occurred", error);
         return Promise.reject(error.message || error);
     }
 }

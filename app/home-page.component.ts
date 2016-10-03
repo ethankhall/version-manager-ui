@@ -1,16 +1,15 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-
 import { ProjectApiService } from "./services/rest-api/project-api.services";
 import { AuthenticationService } from "./services/authentication.services";
 import { UserService } from "./services/rest-api/user.services";
 
 @Component({
     moduleId: module.id,
-    selector: 'home-page',
-    templateUrl: '/templates/home-page.html',
+    selector: "home-page",
+    templateUrl: "home-page.component.html"
 })
-export class HomePageComponent implements OnInit{
+export class HomePageComponent implements OnInit {
 
     projects: string[];
 

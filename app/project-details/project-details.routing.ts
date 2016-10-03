@@ -6,21 +6,21 @@ import { ProjectComponent } from "./project.component";
 import { VersionComponent } from "./version.component";
 
 export const projectRoutes: Routes = [{
-    path: 'project/:projectName',
+    path: "project/:projectName",
     children: [
         {
-            path: '',
+            path: "",
             component: ProjectComponent
         },
         {
-            path: ':repoName',
+            path: ":repoName",
             children: [
                 {
-                    path: '',
+                    path: "",
                     component: RepoComponent
                 },
                 {
-                    path: ':versionId',
+                    path: ":versionId",
                     component: VersionComponent
                 }
             ]

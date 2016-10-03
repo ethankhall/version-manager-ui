@@ -2,7 +2,8 @@
   "name": "version-manager-ui",
   "version": "1.0.0",
   "scripts": {
-    "start": "tsc && concurrently \"tsc -w\" \"lite-server -c light-server-config.js\" ",
+    "clean": "rm -rf dist",
+    "start": "gulp build && concurrently --kill-others \"gulp watch\" \"lite-server -c light-server-config.js\"",
     "lite": "lite-server -c light-server-config.js",
     "postinstall": "typings install",
     "tsc": "tsc",
@@ -30,10 +31,23 @@
     "zone.js": "^0.6.25"
   },
   "devDependencies": {
+    "browserify": "^13.0.1",
     "concurrently": "^3.0.0",
+    "cors": "^2.8.1",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-minify": "0.0.14",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-typescript": "^3.0.2",
     "lite-server": "^2.2.2",
+    "merge2": "^1.0.2",
+    "ts-node": "^1.3.0",
     "typescript": "^2.0.3",
+    "typescript-node": "^0.1.3",
+    "typescript-register": "^1.1.0",
+    "typescript-require": "^0.2.9-1",
     "typings": "^1.4.0",
-    "cors": "^2.8.1"
+    "uglifyjs": "^2.4.10"
   }
 }

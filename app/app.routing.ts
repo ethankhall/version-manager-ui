@@ -6,7 +6,7 @@ import { projectRoutes } from "./project-details/project-details.routing";
 const appRoutes: Routes = [
     ...projectRoutes,
     {
-        path: '',
+        path: "",
         component: HomePageComponent
     }
 ];

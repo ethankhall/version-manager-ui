@@ -10,7 +10,7 @@ module.exports = {
         ignored: 'node_modules'
     },
     server: {
-        baseDir: './',
+        baseDir: 'build',
         middleware: [
             log({format: '%date %status %method %url'}),
             cors(),

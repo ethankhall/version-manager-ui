@@ -6,8 +6,8 @@ import { ProjectDetails } from "../models/crom.models";
 
 @Component({
     moduleId: module.id,
-    selector: 'crom-project',
-    templateUrl: '/templates/project-details/project.html'
+    selector: "crom-project",
+    templateUrl: "project.component.html"
 })
 export class ProjectComponent implements OnInit {
 
@@ -17,12 +17,12 @@ export class ProjectComponent implements OnInit {
     }
 
     toRepo(repoName: string): void {
-        this.router.navigate([repoName], {relativeTo: this.route})
+        this.router.navigate([repoName], { relativeTo: this.route });
     }
 
     ngOnInit(): void {
         this.route.params.forEach((params: Params) => {
-            let id = params['projectName'];
+            let id = params["projectName"];
             this.cromProjectService.getProjectDetails(id).then(proj => this.projectDetails = proj);
         });
     }

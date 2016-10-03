@@ -1,22 +1,21 @@
-import { Component } from "@angular/core";
-import { OnInit } from "@angular/core";
-
+import { Component, OnInit } from "@angular/core";
 import { AuthenticationService } from "../services/authentication.services";
 import { BaseUrlService } from "../services/rest-api/base-url.services";
 
 @Component({
     moduleId: module.id,
-    selector: 'nav-bar',
-    templateUrl: '/templates/nav-bar.html'
+    selector: "nav-bar",
+    templateUrl: "nav-bar.component.html"
 })
 export class NavBarComponent implements OnInit {
 
     loggedIn: boolean = false;
 
-    constructor(private authService: AuthenticationService, private baseUrl: BaseUrlService){ }
+    constructor(private authService: AuthenticationService, private baseUrl: BaseUrlService) {
+    }
 
     getGoogleLoginUrl(): string {
-        return this.baseUrl.createFullUrl("/auth/google")
+        return this.baseUrl.createFullUrl("/auth/google");
     }
 
     logout(): void {
@@ -25,6 +24,6 @@ export class NavBarComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.loggedIn = this.authService.isLoggedIn()
+        this.loggedIn = this.authService.isLoggedIn();
     }
 }

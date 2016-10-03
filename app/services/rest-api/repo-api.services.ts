@@ -18,15 +18,16 @@ export class RepoApiService {
     }
 
     private baseUrl(projectName: string, repoName: String): string {
-        return RepoApiService.repoBaseUrl(this.baseUrlService, projectName, repoName)
+        return RepoApiService.repoBaseUrl(this.baseUrlService, projectName, repoName);
     }
 
     static repoBaseUrl(baseUrlService: BaseUrlService, projectName: string, repoName: String): string {
-        return baseUrlService.createFullUrl(`/api/v1/project/${projectName}/repo/${repoName}`)
+        return baseUrlService.createFullUrl(`/api/v1/project/${projectName}/repo/${repoName}`);
     }
 
     private static handleError(error: any): Promise<any> {
-        console.error('An error occurred', error); // for demo purposes only
+        console.error("An error occurred", error);
         return Promise.reject(error.message || error);
+
     }
 }

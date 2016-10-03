@@ -6,16 +6,17 @@ import { CookieService } from "angular2-cookie/services/cookies.service";
 export class AuthenticationService {
 
     private COOKIE_NAME = "crom_cookie";
-    constructor(private cookieService: CookieService) { }
+
+    constructor(private cookieService: CookieService) {
+    }
 
     private getCookie(): string {
-
         return this.cookieService.get(this.COOKIE_NAME);
     }
 
     isLoggedIn(): boolean {
-        var cookie = this.getCookie();
-        return cookie && cookie.length != 0;
+        let cookie = this.getCookie();
+        return cookie && cookie.length !== 0;
     }
 
     logout(): void {
@@ -23,7 +24,7 @@ export class AuthenticationService {
     }
 
     addAuthHeaders(headers: Headers): Headers {
-        if(!this.isLoggedIn()) {
+        if (!this.isLoggedIn()) {
             return null;
         }
 
@@ -32,6 +33,6 @@ export class AuthenticationService {
     }
 
     createAuthHeaders(): Headers {
-        return this.addAuthHeaders(new Headers())
+        return this.addAuthHeaders(new Headers());
     }
 }

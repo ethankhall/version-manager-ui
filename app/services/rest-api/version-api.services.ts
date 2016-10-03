@@ -24,15 +24,15 @@ export class VersionApiService {
     }
 
     private versionsUrl(projectName: string, repoName: String): string {
-        return VersionApiService.versionBaseUrl(this.baseUrlService, projectName, repoName) + "s"
+        return VersionApiService.versionBaseUrl(this.baseUrlService, projectName, repoName) + "s";
     }
 
     static versionBaseUrl(baseUrlService: BaseUrlService, projectName: string, repoName: String): string {
-        return RepoApiService.repoBaseUrl(baseUrlService, projectName, repoName) + "/version"
+        return RepoApiService.repoBaseUrl(baseUrlService, projectName, repoName) + "/version";
     }
 
     private static handleError(error: any): Promise<any> {
-        console.error('An error occurred', error); // for demo purposes only
+        console.error("An error occurred", error);
         return Promise.reject(error.message || error);
     }
 }
