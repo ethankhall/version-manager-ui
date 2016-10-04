@@ -13,22 +13,23 @@ export class VersionComponent implements OnInit {
     projectName: string;
     repoName: string;
     repoDetails: RepoDetails;
-    latestVersion: Version;
+    versionId: string;
+    version: Version;
 
     constructor(private route: ActivatedRoute, private router: Router, private repoApi: RepoApiService,
                 private versionApi: VersionApiService) {
     }
 
     toRepo(): void {
-        this.router.navigate(["../"], { relativeTo: this.route });
+        this.router.navigate(["/project", this.projectName, this.repoName]);
     }
 
     toProject(): void {
-        this.router.navigate(["../../"], { relativeTo: this.route });
+        this.router.navigate(["/project", this.projectName]);
     }
 
-    toVersion(id: String): void {
-
+    toVersionList(): void {
+        this.router.navigate(["/project", this.projectName, this.repoName, "version"]);
     }
 
     ngOnInit(): void {
@@ -37,8 +38,12 @@ export class VersionComponent implements OnInit {
             this.repoName = params["repoName"];
         });
 
+        this.route.params.forEach((params: Params) => {
+            this.versionId = params["versionId"];
+        });
+
         this.repoApi.getRepoDetails(this.projectName, this.repoName).then(details => this.repoDetails = details);
 
-        this.versionApi.findAllVersions(this.projectName, this.repoName).then(details => this.latestVersion = details.latest);
+        this.versionApi.findVersion(this.projectName, this.repoName, this.versionId).then(version => this.version = version)
     }
 }

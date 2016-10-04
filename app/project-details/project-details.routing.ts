@@ -4,6 +4,7 @@ import { RepoComponent } from "./repo.component";
 import { ProjectListComponent } from "./project-list.component";
 import { VersionComponent } from "./version.component";
 import { RepoListComponent } from "./repo-list.component";
+import { VersionListComponent } from "./version-list.component";
 
 export const projectRoutes: Routes = [{
     path: "project",
@@ -21,8 +22,16 @@ export const projectRoutes: Routes = [{
                             component: RepoComponent
                         },
                         {
-                            path: ":versionId",
-                            component: VersionComponent
+                            path: "version",
+                            children: [
+                                { path: "", component: VersionListComponent },
+                                {
+                                    path: ":versionId",
+                                    children: [
+                                        { path: "", component: VersionComponent }
+                                    ]
+                                }
+                            ]
                         }
                     ]
                 }

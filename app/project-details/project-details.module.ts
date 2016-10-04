@@ -8,9 +8,10 @@ import { ServicesModule } from "../services/services.module";
 import { projectRouting } from "./project-details.routing";
 import { VersionComponent } from "./version.component";
 import { RepoListComponent } from "./repo-list.component";
+import { VersionListComponent } from "./version-list.component";
 
 @NgModule({
     imports: [BrowserModule, HttpModule, ServicesModule, projectRouting],
-    declarations: [ProjectListComponent, RepoComponent, VersionComponent, RepoListComponent]
+    declarations: [ProjectListComponent, RepoComponent, VersionComponent, RepoListComponent, VersionListComponent]
 })
 export class ProjectDetailsModule {}

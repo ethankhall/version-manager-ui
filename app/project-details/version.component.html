@@ -1,6 +1,16 @@
 <div>
-    <h3><a (click)="toProject()">{{projectName}}</a>/<a (click)="toRepo()">{{repoName}}</a></h3>
-    <div>Url: {{repoDetails?.url}}</div>
-    <div>Latest Version: <a (onclick)="toVersion(latestVersion.commitId)">{{latestVersion?.version}}</a></div>
+    <h3>
+        <a (click)="toProject()">{{projectName}}</a> /
+        <a (click)="toRepo()">{{repoName}}</a> /
+        <a (click)="toVersionList()">versions</a> /
+        {{version?.version}}
+    </h3>
 
+    <div>Created At: {{version?.createdAt}}</div>
+    <div>
+        Files:
+        <ul>
+
+        </ul>
+    </div>
 </div>

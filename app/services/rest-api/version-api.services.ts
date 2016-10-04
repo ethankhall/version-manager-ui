@@ -23,8 +23,19 @@ export class VersionApiService {
             .catch(VersionApiService.handleError);
     }
 
-    private versionsUrl(projectName: string, repoName: String): string {
+    findVersion(projectName: string, repoName: String, versionId: string): Promise<Version> {
+        return this.http.get(this.versionUrl(projectName, repoName, versionId), { headers: this.authService.createAuthHeaders() })
+            .toPromise()
+            .then(response => response.json() as Version)
+            .catch(VersionApiService.handleError);
+    }
+
+    private versionsUrl(projectName: string, repoName: string): string {
         return VersionApiService.versionBaseUrl(this.baseUrlService, projectName, repoName) + "s";
+    }
+
+    private versionUrl(projectName: string, repoName: string, versionId: string): string {
+        return VersionApiService.versionBaseUrl(this.baseUrlService, projectName, repoName) + "/" + versionId;
     }
 
     static versionBaseUrl(baseUrlService: BaseUrlService, projectName: string, repoName: String): string {
