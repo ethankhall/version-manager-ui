@@ -1,0 +1,7 @@
+<div>
+    <h3>{{projectDetails?.name}}</h3>
+    <h4>Repositories:</h4>
+    <ul *ngIf="projects" >
+        <li *ngFor="let project of projects"><a (click)="toProject(project)">{{project}}</a></li>
+    </ul>
+</div>

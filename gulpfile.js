@@ -30,10 +30,12 @@ gulp.task("compile", function () {
         .pipe(gulp.dest("build"));
 });
 
-gulp.task('bundle:js', ["compile", "libs"], function () {
-    var builder = new sysBuilder('./build/', './systemjs.config.js');
+gulp.task('bundle:js:raw', function () {
+    var builder = new sysBuilder('build', './systemjs.config.js');
     return builder.buildStatic('main.js', 'public/js/app.js', {minify: false, encodeNames: false});
 });
+
+gulp.task('bundle:js', ["compile", "bundle:libs", "bundle:js:raw"]);
 
 /**
  * Copy all resources that are not TypeScript files into build directory.
@@ -80,15 +82,9 @@ gulp.task("libs", function () {
  * Watch for changes in TypeScript, HTML and CSS files.
  */
 gulp.task('watch', function () {
-    gulp.watch(["./app/**/*.ts"], ['compile']).on('change', function (e) {
-        console.log('TypeScript file ' + e.path + ' has been changed. Compiling.');
-    });
-    gulp.watch(
-        ["./app/**/*.html", "./app/**/*.css", "index.html", "systemjs.config.js", "styles.css"],
-        ['resources']
-    ).on('change', function (e) {
-        console.log('Resource file ' + e.path + ' has been changed. Updating.');
-    });
+    gulp.watch(["app/**/*.ts"], ['compile']);
+    gulp.watch(["build/**/*.js"], ['bundle:js:raw']);
+    gulp.watch(["./app/**/*.html", "./app/**/*.css", "index.html", "styles.css"], ['bundle:resources']);
 });
 
 /**

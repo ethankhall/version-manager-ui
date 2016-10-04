@@ -19,8 +19,8 @@ export class RepoComponent implements OnInit {
                 private versionApi: VersionApiService) {
     }
 
-    parentRoute(): void {
-        this.router.navigate(["../"], { relativeTo: this.route });
+    toProject(): void {
+        this.router.navigate(["/project", this.projectName]);
     }
 
     toVersion(id: String): void {
