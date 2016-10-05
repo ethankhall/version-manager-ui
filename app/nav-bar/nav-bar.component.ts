@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
+import { Router, ActivatedRoute } from "@angular/router";
 import { AuthenticationService } from "../services/authentication.services";
 import { BaseUrlService } from "../services/rest-api/base-url.services";
+import { UserService } from "../services/rest-api/user.services";
 
 @Component({
     moduleId: module.id,
@@ -10,12 +12,19 @@ import { BaseUrlService } from "../services/rest-api/base-url.services";
 export class NavBarComponent implements OnInit {
 
     loggedIn: boolean = false;
+    userName: string;
 
-    constructor(private authService: AuthenticationService, private baseUrl: BaseUrlService) {
+    constructor(private route: ActivatedRoute, private router: Router,
+                private authService: AuthenticationService, private baseUrl: BaseUrlService,
+                private userService: UserService) {
     }
 
     getGoogleLoginUrl(): string {
         return this.baseUrl.createFullUrl("/auth/google");
+    }
+
+    profile(): void {
+        this.router.navigate(["/user"])
     }
 
     logout(): void {
@@ -25,5 +34,6 @@ export class NavBarComponent implements OnInit {
 
     ngOnInit(): void {
         this.loggedIn = this.authService.isLoggedIn();
+        this.userService.getProfile().then(user => this.userName = user.userName);
     }
 }

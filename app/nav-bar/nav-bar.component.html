@@ -6,6 +6,7 @@
 
         <div class="navbar-right">
             <ul class="nav navbar-nav">
+                <li *ngIf="loggedIn"><a (click)="profile()">{{userName}}</a></li>
                 <li *ngIf="loggedIn"><a (click)="logout()">Log Out</a></li>
                 <li *ngIf="!loggedIn"><a [href]="getGoogleLoginUrl()">Log In</a></li>
             </ul>

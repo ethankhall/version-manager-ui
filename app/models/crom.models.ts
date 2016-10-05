@@ -24,3 +24,10 @@ export class Version {
     createdAt: string;
     versionParts: string[];
 }
+
+
+export class UserProfile {
+    userName: string;
+    email: string;
+    displayName: string;
+}
