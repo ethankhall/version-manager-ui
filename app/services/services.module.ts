@@ -6,12 +6,13 @@ import { ProjectApiService } from "./rest-api/project-api.services";
 import { CookieService } from "angular2-cookie/services/cookies.service";
 import { RepoApiService } from "./rest-api/repo-api.services";
 import { VersionApiService } from "./rest-api/version-api.services";
+import { MetaDataApiService } from "./rest-api/meta-data-api.services";
 
 @NgModule({
     declarations: [],
     providers: [
         BaseUrlService, UserService, ProjectApiService, CookieService,
-        AuthenticationService, RepoApiService, VersionApiService
+        AuthenticationService, RepoApiService, VersionApiService, MetaDataApiService
     ]
 })
 export class ServicesModule {

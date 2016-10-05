@@ -35,7 +35,11 @@ export class VersionApiService {
     }
 
     private versionUrl(projectName: string, repoName: string, versionId: string): string {
-        return VersionApiService.versionBaseUrl(this.baseUrlService, projectName, repoName) + "/" + versionId;
+        return VersionApiService.specificVersionUrl(this.baseUrlService, projectName, repoName, versionId)
+    }
+
+    static specificVersionUrl(baseUrlService: BaseUrlService, projectName: string, repoName: string, versionId: string): string {
+        return VersionApiService.versionBaseUrl(baseUrlService, projectName, repoName) + "/" + versionId;
     }
 
     static versionBaseUrl(baseUrlService: BaseUrlService, projectName: string, repoName: String): string {

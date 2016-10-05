@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router, Params } from "@angular/router";
-import { RepoApiService } from "../services/rest-api/repo-api.services";
 import { Version } from "../models/crom.models";
 import { VersionApiService } from "../services/rest-api/version-api.services";
 
@@ -15,7 +14,7 @@ export class VersionListComponent implements OnInit {
     versions: Version[];
     latest: Version;
 
-    constructor(private route: ActivatedRoute, private router: Router, private repoApi: RepoApiService,
+    constructor(private route: ActivatedRoute, private router: Router,
                 private versionApi: VersionApiService) {
     }
 

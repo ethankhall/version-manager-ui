@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, Params } from "@angular/router";
 import { RepoApiService } from "../services/rest-api/repo-api.services";
 import { RepoDetails, Version } from "../models/crom.models";
 import { VersionApiService } from "../services/rest-api/version-api.services";
+import { MetaDataApiService } from "../services/rest-api/meta-data-api.services";
 
 @Component({
     moduleId: module.id,
@@ -15,9 +16,14 @@ export class VersionComponent implements OnInit {
     repoDetails: RepoDetails;
     versionId: string;
     version: Version;
+    files: string[];
 
     constructor(private route: ActivatedRoute, private router: Router, private repoApi: RepoApiService,
-                private versionApi: VersionApiService) {
+                private versionApi: VersionApiService, private metaDataApi: MetaDataApiService) {
+    }
+
+    getFileRef(name: string): string {
+        return this.metaDataApi.getFile(this.projectName, this.repoName, this.versionId, name);
     }
 
     toRepo(): void {
@@ -42,8 +48,16 @@ export class VersionComponent implements OnInit {
             this.versionId = params["versionId"];
         });
 
-        this.repoApi.getRepoDetails(this.projectName, this.repoName).then(details => this.repoDetails = details);
+        this.repoApi
+            .getRepoDetails(this.projectName, this.repoName)
+            .then(details => this.repoDetails = details);
 
-        this.versionApi.findVersion(this.projectName, this.repoName, this.versionId).then(version => this.version = version)
+        this.versionApi
+            .findVersion(this.projectName, this.repoName, this.versionId)
+            .then(version => this.version = version);
+
+        this.metaDataApi
+            .findAllFiles(this.projectName, this.repoName, this.versionId)
+            .then(files => this.files = files);
     }
 }

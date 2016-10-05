@@ -7,10 +7,10 @@
     </h3>
 
     <div>Created At: {{version?.createdAt}}</div>
-    <div>
-        Files:
+    <div *ngIf="files">
+        Available MetaData:
         <ul>
-
+            <li *ngFor="let file of files"><a href="{{getFileRef(file)}}">{{file}}</a></li>
         </ul>
     </div>
 </div>
