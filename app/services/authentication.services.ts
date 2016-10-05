@@ -5,17 +5,31 @@ import { CookieService } from "angular2-cookie/services/cookies.service";
 @Injectable()
 export class AuthenticationService {
 
+    private AUTH_STORAGE = "crom_auth";
     private COOKIE_NAME = "crom_cookie";
 
     constructor(private cookieService: CookieService) {
     }
 
-    private getCookie(): string {
-        return this.cookieService.get(this.COOKIE_NAME);
+    setAuthString(auth: string) {
+        localStorage.setItem(this.AUTH_STORAGE, auth);
+    }
+
+    resetAuth() {
+        localStorage.removeItem(this.AUTH_STORAGE);
+    }
+
+    getAuthString(): string {
+        let text = localStorage.getItem(this.AUTH_STORAGE);
+        if((text === null || typeof text === "undefined" || text === "undefined")) {
+            return this.cookieService.get(this.COOKIE_NAME);
+        } else {
+            return text;
+        }
     }
 
     isLoggedIn(): boolean {
-        let cookie = this.getCookie();
+        let cookie = this.getAuthString();
         return cookie && cookie.length !== 0;
     }
 
@@ -28,7 +42,7 @@ export class AuthenticationService {
             return null;
         }
 
-        headers.set("X-AUTH-TOKEN", this.getCookie());
+        headers.set("X-AUTH-TOKEN", this.getAuthString());
         return headers;
     }
 

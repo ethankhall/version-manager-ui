@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { UserProfile, UserService } from "../services/rest-api/user.services";
 import { BaseUrlService } from "../services/rest-api/base-url.services";
+import { AuthenticationService } from "../services/authentication.services";
 
 @Component({
     moduleId: module.id,
@@ -12,19 +13,22 @@ export class ConfigurationComponent implements OnInit {
     config: Config;
     isForced: boolean;
 
-    constructor(private route: ActivatedRoute, private router: Router, private baseUrlService: BaseUrlService) {
+    constructor(private route: ActivatedRoute, private router: Router,
+                private baseUrlService: BaseUrlService, protected authService: AuthenticationService) {
     }
 
     onSubmit(): void {
-        this.baseUrlService.forceUrl(this.config.api)
+        this.baseUrlService.forceUrl(this.config.api);
+        this.authService.setAuthString(this.config.auth);
     }
 
     reset(): void {
         this.baseUrlService.reset();
+        this.authService.resetAuth();
     }
 
     ngOnInit(): void {
-        this.config = new Config(this.baseUrlService.getBaseUrl());
+        this.config = new Config(this.baseUrlService.getBaseUrl(), this.authService.getAuthString());
         this.isForced = this.baseUrlService.isForced();
     }
 }
@@ -32,8 +36,11 @@ export class ConfigurationComponent implements OnInit {
 export class Config {
 
     api: string;
-    constructor(api: string) {
+    auth: string;
+
+    constructor(api: string, auth: string) {
         this.api = api;
+        this.auth = auth;
     }
 
 }
