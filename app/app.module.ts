@@ -8,9 +8,10 @@ import { HomePageComponent } from "./home-page.component";
 import { NavBarComponent } from "./nav-bar/nav-bar.component";
 import { ServicesModule } from "./services/services.module";
 import { UserDetailsModule } from "./user-details/user-details.module";
+import { ConfigurationModule } from "./private-configuration/configuration.module";
 
 @NgModule({
-    imports: [BrowserModule, HttpModule, routing, ProjectDetailsModule, UserDetailsModule, ServicesModule],
+    imports: [BrowserModule, HttpModule, routing, ProjectDetailsModule, UserDetailsModule, ServicesModule, ConfigurationModule],
     declarations: [AppComponent, HomePageComponent, NavBarComponent],
     providers: [appRoutingProviders],
     bootstrap: [AppComponent]
