@@ -22,7 +22,11 @@ export class AuthenticationService {
     getAuthString(): string {
         let text = localStorage.getItem(this.AUTH_STORAGE);
         if((text === null || typeof text === "undefined" || text === "undefined")) {
-            return this.cookieService.get(this.COOKIE_NAME);
+            var cookie = this.cookieService.get(this.COOKIE_NAME);
+            if((cookie === null || typeof cookie === "undefined" || cookie === "undefined")) {
+                return cookie;
+            }
+            return null;
         } else {
             return text;
         }
@@ -30,7 +34,7 @@ export class AuthenticationService {
 
     isLoggedIn(): boolean {
         let cookie = this.getAuthString();
-        return cookie && cookie.length !== 0;
+        return cookie !== null && cookie.length !== 0;
     }
 
     logout(): void {
@@ -39,7 +43,7 @@ export class AuthenticationService {
 
     addAuthHeaders(headers: Headers): Headers {
         if (!this.isLoggedIn()) {
-            return null;
+            return headers;
         }
 
         headers.set("X-AUTH-TOKEN", this.getAuthString());

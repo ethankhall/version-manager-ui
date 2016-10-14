@@ -11,19 +11,31 @@ export class UserService {
     }
 
     getUserWatches(): Promise<string[]> {
-        let headers = this.authService.createAuthHeaders();
-        return this.http.get(this.baseUrl.createFullUrl("/api/v1/user/watches"), { headers: headers })
-            .toPromise()
-            .then(request => (request.json().watches as Watch[]).map(watch => watch.projectName))
-            .catch(UserService.handleError);
+        if(this.authService.isLoggedIn()) {
+            let headers = this.authService.createAuthHeaders();
+            return this.http.get(this.baseUrl.createFullUrl("/api/v1/user/watches"), { headers: headers })
+                .toPromise()
+                .then(request => (request.json().watches as Watch[]).map(watch => watch.projectName))
+                .catch(UserService.handleError);
+        } else {
+            Promise.resolve([])
+        }
     }
 
     getProfile(): Promise<UserProfile> {
-        let headers = this.authService.createAuthHeaders();
-        return this.http.get(this.getProfileUrl(), { headers: headers })
-            .toPromise()
-            .then(request => request.json() as UserProfile)
-            .catch(UserService.handleError);
+        if(this.authService.isLoggedIn()) {
+            let headers = this.authService.createAuthHeaders();
+            return this.http.get(this.getProfileUrl(), { headers: headers })
+                .toPromise()
+                .then(request => request.json() as UserProfile)
+                .catch(UserService.handleError);
+        } else {
+            var userProfile = new UserProfile();
+            userProfile.userName = "Unknown";
+            userProfile.displayName = "Unknown";
+            userProfile.email = "";
+            return Promise.resolve(userProfile)
+        }
     }
 
     private getProfileUrl(): string {

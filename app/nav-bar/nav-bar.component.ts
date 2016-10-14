@@ -34,6 +34,10 @@ export class NavBarComponent implements OnInit {
 
     ngOnInit(): void {
         this.loggedIn = this.authService.isLoggedIn();
-        this.userService.getProfile().then(user => this.userName = user.userName);
+        if(this.loggedIn) {
+            this.userService.getProfile().then(user => this.userName = user.userName);
+        } else {
+            this.userName = "Unknown";
+        }
     }
 }
