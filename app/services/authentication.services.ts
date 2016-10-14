@@ -21,14 +21,15 @@ export class AuthenticationService {
 
     getAuthString(): string {
         let text = localStorage.getItem(this.AUTH_STORAGE);
-        if((text === null || typeof text === "undefined" || text === "undefined")) {
-            var cookie = this.cookieService.get(this.COOKIE_NAME);
-            if((cookie === null || typeof cookie === "undefined" || cookie === "undefined")) {
-                return cookie;
-            }
+        if(text === null) {
+          var cookie = this.cookieService.get(this.COOKIE_NAME);
+          if(cookie === null || cookie === undefined) {
             return null;
+          } else {
+            return cookie;
+          }
         } else {
-            return text;
+          return text;
         }
     }
 
