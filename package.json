@@ -5,7 +5,7 @@
     "clean": "rm -rf dist",
     "start": "gulp build && concurrently --kill-others \"gulp watch\" \"lite-server -c light-server-config.js\"",
     "prod_serve": "gulp bundle && gulp serve",
-    "watch_serve": "gulp bundle && concurrently --kill-others \"corsproxy\" \"gulp watch\" \"gulp serve\"",
+    "watch_serve": "gulp bundle && concurrently --kill-others \"gulp watch\" \"gulp serve\"",
     "lite": "lite-server -c light-server-config.js",
     "postinstall": "typings install",
     "tsc": "tsc",
