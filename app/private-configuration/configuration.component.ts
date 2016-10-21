@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { UserProfile, UserService } from "../services/rest-api/user.services";
 import { BaseUrlService } from "../services/rest-api/base-url.services";
 import { AuthenticationService } from "../services/authentication.services";
+import { win } from "@angular/platform-browser/src/facade/browser";
 
 @Component({
     moduleId: module.id,
@@ -18,6 +19,7 @@ export class ConfigurationComponent implements OnInit {
     }
 
     onSubmit(): void {
+        window.alert("Saves settings");
         this.baseUrlService.forceUrl(this.config.api);
         this.authService.setAuthString(this.config.auth);
     }
