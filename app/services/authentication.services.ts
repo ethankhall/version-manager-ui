@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Headers } from "@angular/http";
+import { Headers, RequestOptionsArgs } from "@angular/http";
 import { CookieService } from "angular2-cookie/services/cookies.service";
 
 @Injectable()
@@ -53,5 +53,9 @@ export class AuthenticationService {
 
     createAuthHeaders(): Headers {
         return this.addAuthHeaders(new Headers());
+    }
+
+    createRequestOptionArgs(): RequestOptionsArgs {
+        return { headers: this.createAuthHeaders() }
     }
 }
