@@ -10,6 +10,7 @@ var concat = require('gulp-concat');
 var minify = require('gulp-minify');
 var sysBuilder = require('systemjs-builder');
 var connect = require('gulp-connect');
+var runSequence = require('run-sequence');
 
 
 /**
@@ -35,7 +36,9 @@ gulp.task('bundle:js:raw', function () {
     return builder.buildStatic('main.js', 'public/js/app.js', {minify: false, encodeNames: false});
 });
 
-gulp.task('bundle:js', ["compile", "bundle:libs", "bundle:js:raw"]);
+gulp.task('bundle:js', function (cb) {
+    runSequence('compile', 'libs', 'bundle:libs', 'bundle:js:raw', cb);
+});
 
 /**
  * Copy all resources that are not TypeScript files into build directory.
