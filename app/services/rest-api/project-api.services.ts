@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Http, URLSearchParams, Headers } from "@angular/http";
+import { Http, URLSearchParams } from "@angular/http";
 import "rxjs/add/operator/toPromise";
 import { BaseUrlService } from "./base-url.services";
 import { AuthenticationService } from "../authentication.services";
@@ -23,7 +23,13 @@ export class ProjectApiService {
     getProjectDetails(name: string): Promise<ProjectDetails> {
         return this.http.get(this.baseUrl.createFullUrl("/api/v1/project/" + name), this.authService.createRequestOptionArgs())
             .toPromise()
-            .then(response => response.json() as ProjectDetails)
+            .then(response => {
+                var details = response.json() as ProjectDetails;
+                if(details.repos === undefined || details.repos == null) {
+                    details.repos = [];
+                }
+                return details;
+            })
             .catch(ProjectApiService.handleError);
     }
 

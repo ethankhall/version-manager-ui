@@ -11,10 +11,12 @@ import { UserDetailsModule } from "./user-details/user-details.module";
 import { ConfigurationModule } from "./private-configuration/configuration.module";
 import { SupportPagesModule } from "./support-pages/support-pages.module";
 import { FooterComponent } from "./footer/footer.component";
+import { CreateDetailsModule } from "./create-details/create-details.module";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
 @NgModule({
     imports: [BrowserModule, HttpModule, routing, ProjectDetailsModule, UserDetailsModule,
-        ServicesModule, ConfigurationModule, SupportPagesModule],
+        ServicesModule, ConfigurationModule, SupportPagesModule, CreateDetailsModule, FormsModule, ReactiveFormsModule],
     declarations: [AppComponent, HomePageComponent, NavBarComponent, FooterComponent],
     providers: [appRoutingProviders],
     bootstrap: [AppComponent]

@@ -3,7 +3,7 @@ import { ModuleWithProviders } from "@angular/core";
 import { RepoComponent } from "./repo.component";
 import { ProjectListComponent } from "./project-list.component";
 import { VersionComponent } from "./version.component";
-import { RepoListComponent } from "./repo-list.component";
+import { SpecificProjectComponent } from "./specific-project.component";
 import { VersionListComponent } from "./version-list.component";
 
 export const projectRoutes: Routes = [{
@@ -13,7 +13,7 @@ export const projectRoutes: Routes = [{
         {
             path: ':projectName',
             children: [
-                { path: "", component: RepoListComponent },
+                { path: "", component: SpecificProjectComponent },
                 {
                     path: ":repoName",
                     children: [

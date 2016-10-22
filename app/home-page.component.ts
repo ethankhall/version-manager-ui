@@ -11,7 +11,8 @@ import { UserService } from "./services/rest-api/user.services";
 })
 export class HomePageComponent implements OnInit {
 
-    projects: string[];
+    projects: string[] = [];
+    loggedIn: boolean = false;
 
     constructor(private router: Router, private cromProjectService: ProjectApiService, private userService: UserService,
                 private authService: AuthenticationService) {
@@ -23,6 +24,7 @@ export class HomePageComponent implements OnInit {
 
     ngOnInit(): void {
         this.projectsToShow().then(projects => this.projects = projects);
+        this.loggedIn = this.authService.isLoggedIn();
     }
 
     private projectsToShow(): Promise<string[]> {

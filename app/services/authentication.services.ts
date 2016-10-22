@@ -21,7 +21,7 @@ export class AuthenticationService {
 
     getAuthString(): string {
         let text = localStorage.getItem(this.AUTH_STORAGE);
-        if(text === null) {
+        if(text === null || text === "") {
           var cookie = this.cookieService.get(this.COOKIE_NAME);
           if(cookie === null || cookie === undefined) {
             return null;
@@ -35,7 +35,9 @@ export class AuthenticationService {
 
     isLoggedIn(): boolean {
         let cookie = this.getAuthString();
-        return cookie !== null && cookie.length !== 0;
+        var loggedIn = cookie !== null && cookie.length !== 0;
+        // console.log("is logged in: " + loggedIn);
+        return loggedIn;
     }
 
     logout(): void {

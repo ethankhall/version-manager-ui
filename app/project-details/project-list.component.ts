@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Router, Params } from "@angular/router";
+import { Router } from "@angular/router";
 import { ProjectApiService } from "../services/rest-api/project-api.services";
+import { AuthenticationService } from "../services/authentication.services";
+import { UserService } from "../services/rest-api/user.services";
 
 @Component({
     moduleId: module.id,
@@ -8,19 +10,27 @@ import { ProjectApiService } from "../services/rest-api/project-api.services";
 })
 export class ProjectListComponent implements OnInit {
 
-    projects: string[];
+    projects: string[] = [];
+    loggedIn: boolean = false;
 
-    constructor(private route: ActivatedRoute, private router: Router, private cromProjectService: ProjectApiService) {
+    constructor(private router: Router, private cromProjectService: ProjectApiService, private userService: UserService,
+                private authService: AuthenticationService) {
     }
 
-    toProject(projectName: string): void {
-        this.router.navigate([projectName], { relativeTo: this.route });
+    toProject(name: String) {
+        this.router.navigate(["/project", name]);
     }
 
     ngOnInit(): void {
-        this.route.params.forEach((params: Params) => {
-            let id = params["projectName"];
-            this.cromProjectService.getProjects(0).then(proj => this.projects = proj);
-        });
+        this.projectsToShow().then(projects => this.projects = projects);
+        this.loggedIn = this.authService.isLoggedIn();
+    }
+
+    private projectsToShow(): Promise<string[]> {
+        if (this.authService.isLoggedIn()) {
+            return this.userService.getUserWatches();
+        } else {
+            return this.cromProjectService.getProjects(0);
+        }
     }
 }

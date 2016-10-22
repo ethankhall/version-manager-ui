@@ -19,14 +19,15 @@ export class ConfigurationComponent implements OnInit {
     }
 
     onSubmit(): void {
-        window.alert("Saves settings");
         this.baseUrlService.forceUrl(this.config.api);
         this.authService.setAuthString(this.config.auth);
+        window.alert("Saves settings");
     }
 
     reset(): void {
         this.baseUrlService.reset();
         this.authService.resetAuth();
+        window.alert("Settings Reset");
     }
 
     ngOnInit(): void {
