@@ -1,6 +1,7 @@
 export class ProjectDetails {
     name: String;
     repos: RepoName[];
+    permissions: Permission[];
 }
 
 export class RepoName {

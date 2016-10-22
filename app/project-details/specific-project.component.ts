@@ -11,7 +11,7 @@ import { AuthenticationService } from "../services/authentication.services";
 export class SpecificProjectComponent implements OnInit {
 
     projectDetails: ProjectDetails;
-    loggedIn: boolean = false;
+    hasAdmin: boolean = false;
     pageLoaded: boolean = false;
 
     constructor(private route: ActivatedRoute, private router: Router, private cromProjectService: ProjectApiService,
@@ -23,7 +23,7 @@ export class SpecificProjectComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.loggedIn = this.authService.isLoggedIn();
+        this.hasAdmin = this.authService.isLoggedIn();
         this.route.params.forEach((params: Params) => {
             let id = params["projectName"];
             this.cromProjectService.getProjectDetails(id).then(proj => {

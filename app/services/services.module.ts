@@ -7,12 +7,14 @@ import { CookieService } from "angular2-cookie/services/cookies.service";
 import { RepoApiService } from "./rest-api/repo-api.services";
 import { VersionApiService } from "./rest-api/version-api.services";
 import { MetaDataApiService } from "./rest-api/meta-data-api.services";
+import { ConstantApiService } from "./rest-api/constant-api.services";
 
 @NgModule({
     declarations: [],
     providers: [
         BaseUrlService, UserService, ProjectApiService, CookieService,
-        AuthenticationService, RepoApiService, VersionApiService, MetaDataApiService
+        AuthenticationService, RepoApiService, VersionApiService, MetaDataApiService,
+        ConstantApiService
     ]
 })
 export class ServicesModule {

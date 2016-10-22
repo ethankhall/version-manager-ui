@@ -5,10 +5,10 @@
         Crom is a service that gives you (a library/service/person trapped in a computer) the ability to query what versions of have
         been published. This becomes useful, when you want to be able to report on what's available.
         <br />
-        One of Crom's goals it to remove the need to have bump commits. We'll discuss this <a href="#version-management">below</a>.
+        One of Crom's goals it to remove the need to have bump commits. We'll discuss this below.
     </div>
 
-    <h3>What Questions can YOU ask?</h3>
+    <h3>What Questions can <strong>You</strong> Ask?</h3>
     <div>
         Crom aims to answer a few questions (and more will be added latter) without needing access to source repo. They are:
         <ul>
@@ -28,36 +28,43 @@
         <br />
         You may ask, why put that in a service?! Well because then you don't need to manage a file who's only purpose
         is to record the version number and needs to update with ever version.
-        <table>
+        <table class="table table-striped">
             <thead>
                 <tr>
-                    <td>Keyword</td>
-                    <td>Meaning</td>
+                    <td><strong>Keyword</strong></td>
+                    <td><strong>Example Usage</strong></td>
+                    <td><strong>Meaning</strong></td>
                 </tr>
             </thead>
             <tr>
+                <td><code>[bump major]</code></td>
                 <td><code>[bump major]</code></td>
                 <td>Bumps the Major Version of the repo</td>
             </tr>
 
             <tr>
                 <td><code>[bump minor]</code></td>
+                <td><code>[bump minor]</code></td>
                 <td>Bumps the Minor Version of the repo</td>
             </tr>
             <tr>
+                <td><code>[bump patch]</code></td>
                 <td><code>[bump patch]</code></td>
                 <td>Bumps the Patch Version of the repo</td>
             </tr>
                 <tr>
                 <td><code>[bump build]</code></td>
+                <td><code>[bump build]</code></td>
                 <td>Bumps the Build Version of the repo</td>
             </tr>
             <tr>
-                <td><code>[bump group n]</code> - Usage: <code>[bump group 6]</code></td>
+                <td><code>[bump group n]</code></td>
+                <td><code>[bump group 6]</code></td>
                 <td>Bumps the n'th part of the version number. This is base 0, meaning that 0 is the major version.</td>
             </tr>
             <tr>
-                <td><code>[force version {{ '{' }}versionNumber{{ '}' }}]</code> - Usage: <code>[force version 1.2.183.24]</code></td>
+                <td><code>[force version {{ '{' }}versionNumber{{ '}' }}]</code></td>
+                <td><code>[force version 1.2.183.24]</code></td>
                 <td>Sets the version to be <code>versionNumber</code>.</td>
             </tr>
 

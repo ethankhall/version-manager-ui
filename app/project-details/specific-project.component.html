@@ -1,6 +1,6 @@
 <div *ngIf="pageLoaded">
     <h3>{{projectDetails.name}}</h3>
-    <div *ngIf="loggedIn">
+    <div *ngIf="hasAdmin">
         <button class="btn btn-default" [routerLink]="['/create', 'repo', projectDetails.name]">Add Repo</button>
     </div>
 
@@ -17,6 +17,6 @@
     </div>
 
     <p *ngIf="!loggedIn">
-        If you log in, you'll be able to add your own repos!
+        If you log in, you'll may be able to add your own repos or create your own projects!
     </p>
 </div>

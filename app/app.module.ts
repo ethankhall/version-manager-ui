@@ -4,7 +4,6 @@ import { HttpModule } from "@angular/http";
 import { routing, appRoutingProviders } from "./app.routing";
 import { ProjectDetailsModule } from "./project-details/project-details.module";
 import { AppComponent } from "./app.component";
-import { HomePageComponent } from "./home-page.component";
 import { NavBarComponent } from "./nav-bar/nav-bar.component";
 import { ServicesModule } from "./services/services.module";
 import { UserDetailsModule } from "./user-details/user-details.module";
@@ -17,7 +16,7 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 @NgModule({
     imports: [BrowserModule, HttpModule, routing, ProjectDetailsModule, UserDetailsModule,
         ServicesModule, ConfigurationModule, SupportPagesModule, CreateDetailsModule, FormsModule, ReactiveFormsModule],
-    declarations: [AppComponent, HomePageComponent, NavBarComponent, FooterComponent],
+    declarations: [AppComponent, NavBarComponent, FooterComponent],
     providers: [appRoutingProviders],
     bootstrap: [AppComponent]
 })
