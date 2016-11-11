@@ -5,7 +5,6 @@ import { AuthenticationService } from "../services/authentication.services";
 import { UserService } from "../services/rest-api/user.services";
 
 @Component({
-    moduleId: module.id,
     templateUrl: "project-list.component.html"
 })
 export class ProjectListComponent implements OnInit {

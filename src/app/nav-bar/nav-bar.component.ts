@@ -5,7 +5,6 @@ import { BaseUrlService } from "../services/rest-api/base-url.services";
 import { UserService } from "../services/rest-api/user.services";
 
 @Component({
-    moduleId: module.id,
     selector: "nav-bar",
     templateUrl: "nav-bar.component.html"
 })

@@ -13,7 +13,7 @@
         You don't have any project, click the "New Project" button to create one, or click <a [routerLink]="['/create/project']">here</a>
     </div>
 
-    <p *ngIf="!loggedIn">
+    <p *ngIf="loggedIn == false">
         If you log in, you'll be able to create your own projects!
     </p>
 </div>

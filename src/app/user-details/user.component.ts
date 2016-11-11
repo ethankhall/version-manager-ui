@@ -4,7 +4,6 @@ import { UserService } from "../services/rest-api/user.services";
 import { UserProfile } from "../models/crom.models";
 
 @Component({
-    moduleId: module.id,
     templateUrl: "user.component.html"
 })
 export class UserComponent implements OnInit {

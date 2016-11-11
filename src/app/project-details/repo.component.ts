@@ -5,7 +5,6 @@ import { RepoDetails, Version } from "../models/crom.models";
 import { VersionApiService } from "../services/rest-api/version-api.services";
 
 @Component({
-    moduleId: module.id,
     templateUrl: "repo.component.html"
 })
 export class RepoComponent implements OnInit {

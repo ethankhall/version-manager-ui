@@ -16,7 +16,7 @@
         <a [routerLink]="['/create', 'repo', projectDetails.name]">here</a>
     </div>
 
-    <p *ngIf="!loggedIn">
+    <p *ngIf="loggedIn == false">
         If you log in, you'll may be able to add your own repos or create your own projects!
     </p>
 </div>

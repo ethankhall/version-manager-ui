@@ -4,7 +4,6 @@ import { Version } from "../models/crom.models";
 import { VersionApiService } from "../services/rest-api/version-api.services";
 
 @Component({
-    moduleId: module.id,
     templateUrl: "version-list.component.html"
 })
 export class VersionListComponent implements OnInit {

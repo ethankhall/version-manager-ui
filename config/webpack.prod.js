@@ -170,8 +170,8 @@ module.exports = function (env) {
        */
 
       new NormalModuleReplacementPlugin(
-        /angular2-hmr/,
-        helpers.root('config/modules/angular2-hmr-prod.js')
+          /angular2-hmr/,
+          helpers.root('config/modules/angular2-hmr-prod.js')
       ),
 
       /**
@@ -257,4 +257,4 @@ module.exports = function (env) {
     }
 
   });
-}
+};

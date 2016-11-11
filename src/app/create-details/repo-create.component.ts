@@ -5,7 +5,6 @@ import { RepoApiService } from "../services/rest-api/repo-api.services";
 import { ConstantApiService, BumperList } from "../services/rest-api/constant-api.services";
 
 @Component({
-    moduleId: module.id,
     templateUrl: "repo-create.component.html"
 })
 export class RepoCreateComponent implements OnInit {

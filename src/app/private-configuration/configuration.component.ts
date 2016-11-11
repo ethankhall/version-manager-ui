@@ -6,7 +6,6 @@ import { AuthenticationService } from "../services/authentication.services";
 import { UserProfile } from "../../models/crom.models";
 
 @Component({
-    moduleId: module.id,
     templateUrl: "configuration.component.html"
 })
 export class ConfigurationComponent implements OnInit {

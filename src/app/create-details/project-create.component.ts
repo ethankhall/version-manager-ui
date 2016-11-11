@@ -4,7 +4,6 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 
 @Component({
-    moduleId: module.id,
     templateUrl: "project-create.component.html"
 })
 export class ProjectCreateComponent {

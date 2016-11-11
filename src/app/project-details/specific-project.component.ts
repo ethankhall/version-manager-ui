@@ -5,7 +5,6 @@ import { ProjectDetails } from "../models/crom.models";
 import { AuthenticationService } from "../services/authentication.services";
 
 @Component({
-    moduleId: module.id,
     templateUrl: "specific-project.component.html"
 })
 export class SpecificProjectComponent implements OnInit {

@@ -6,7 +6,6 @@ import { VersionApiService } from "../services/rest-api/version-api.services";
 import { MetaDataApiService } from "../services/rest-api/meta-data-api.services";
 
 @Component({
-    moduleId: module.id,
     templateUrl: "version.component.html"
 })
 export class VersionComponent implements OnInit {

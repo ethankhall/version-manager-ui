@@ -12,7 +12,7 @@ import org.littleshoot.proxy.impl.DefaultHttpProxyServer
 import java.util.regex.Pattern
 
 Pattern REQUEST_TARGET_ORIGIN_FORM_PREFIX = Pattern.compile("/[^/]");
-
+println("Acception requests on 0.0.0.0:4321")
 DefaultHttpProxyServer.bootstrap()
         .withPort(4321)
         .withFiltersSource(new HttpFiltersSourceAdapter() {
