@@ -11,7 +11,7 @@ export class VersionApiService {
     constructor(private http: Http, private baseUrlService: BaseUrlService, private authService: AuthenticationService) {
     }
 
-    findAllVersions(projectName: string, repoName: String): Promise<AllVersions> {
+    findAllVersions(projectName: string, repoName: string): Promise<AllVersions> {
         return this.http.get(this.versionsUrl(projectName, repoName), { headers: this.authService.createAuthHeaders() })
             .toPromise()
             .then(response => {
@@ -23,7 +23,7 @@ export class VersionApiService {
             .catch(VersionApiService.handleError);
     }
 
-    findVersion(projectName: string, repoName: String, versionId: string): Promise<Version> {
+    findVersion(projectName: string, repoName: string, versionId: string): Promise<Version> {
         return this.http.get(this.versionUrl(projectName, repoName, versionId), { headers: this.authService.createAuthHeaders() })
             .toPromise()
             .then(response => response.json() as Version)
@@ -42,7 +42,7 @@ export class VersionApiService {
         return VersionApiService.versionBaseUrl(baseUrlService, projectName, repoName) + "/" + versionId;
     }
 
-    static versionBaseUrl(baseUrlService: BaseUrlService, projectName: string, repoName: String): string {
+    static versionBaseUrl(baseUrlService: BaseUrlService, projectName: string, repoName: string): string {
         return RepoApiService.repoBaseUrl(baseUrlService, projectName, repoName) + "/version";
     }
 

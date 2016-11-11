@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { UserProfile, UserService } from "../services/rest-api/user.services";
+import { UserService } from "../services/rest-api/user.services";
 import { BaseUrlService } from "../services/rest-api/base-url.services";
 import { AuthenticationService } from "../services/authentication.services";
-import { win } from "@angular/platform-browser/src/facade/browser";
+import { UserProfile } from "../../models/crom.models";
 
 @Component({
     moduleId: module.id,

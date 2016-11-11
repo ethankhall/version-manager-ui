@@ -12,7 +12,7 @@ export class RepoCreateComponent implements OnInit {
 
     projectName: String = "";
     form: FormGroup;
-    bumpers: BumperList = BumperList();
+    bumpers: BumperList = new BumperList();
 
     constructor(private repoService: RepoApiService, private router: Router, fb: FormBuilder,
                 private route: ActivatedRoute, private constantApi: ConstantApiService) {
