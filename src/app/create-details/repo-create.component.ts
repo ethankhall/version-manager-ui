@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router, ActivatedRoute, Params } from "@angular/router";
-import { RepoApiService } from "../services/rest-api/repo-api.services";
+import { RepoApiService, RepoCreateResponse } from "../services/rest-api/repo-api.services";
 import { ConstantApiService, BumperList } from "../services/rest-api/constant-api.services";
 
 @Component({
@@ -9,7 +9,7 @@ import { ConstantApiService, BumperList } from "../services/rest-api/constant-ap
 })
 export class RepoCreateComponent implements OnInit {
 
-    projectName: String = "";
+    projectName: string = "";
     form: FormGroup;
     bumpers: BumperList = new BumperList();
 
@@ -34,12 +34,13 @@ export class RepoCreateComponent implements OnInit {
     }
 
     onSubmit(): void {
-        // this.repoService.createRepo(this.form.value.repoName).then(result => {
-        //     if(result == ProjectCreateResponse.REJECTED) {
-        //         window.alert("Unable to create project with name " + this.form.value.projectName);
-        //     } else {
-        //         this.router.navigate(['/project', this.form.value.projectName])
-        //     }
-        // });
+        var form = this.form.value;
+        this.repoService.createRepo(this.projectName, form.repoName, form.scmUrl, form.bumper).then(result => {
+            if (result == RepoCreateResponse.REJECTED) {
+                window.alert("Unable to create project with name " + form.repoName);
+            } else {
+                this.router.navigate(['/project', this.projectName, form.repoName])
+            }
+        });
     }
 }
