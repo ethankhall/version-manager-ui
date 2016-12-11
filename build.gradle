@@ -1,0 +1,40 @@
+import org.gradle.api.tasks.Copy
+import org.gradle.api.tasks.Exec
+
+apply plugin: 'base'
+
+task npmInstall(type: Exec) {
+    inputs.files(file('package.json'))
+    outputs.dir(file('node_modules'))
+    commandLine 'npm install'.split(' ')
+}
+
+task prodBuild(type: Exec) {
+    inputs.file(file('tsconfig.json'))
+    inputs.file(file('webpack.config.js'))
+    inputs.files(file('src'))
+    inputs.files(file('typings'))
+    inputs.files(file('config'))
+    outputs.dir(file("dist"))
+
+    dependsOn npmInstall
+    commandLine 'npm run build:prod'.split(' ')
+}
+
+task prepairAngularPackage(type: Copy) {
+    dependsOn 'prodBuild'
+    from file('dist')
+    into file('docker/content')
+}
+
+task buildAngularContainer(type: Exec) {
+    dependsOn prepairAngularPackage
+    commandLine "docker build --tag us.gcr.io/crom-1289/crom-www:v$version .".split(' ')
+    workingDir file('crom-www')
+}
+
+task pushAngularContainer(type: Exec) {
+    dependsOn buildAngularContainer
+    commandLine "gcloud docker -- push us.gcr.io/crom-1289/crom-www:v$version".split(' ')
+    workingDir file('crom-www')
+}
