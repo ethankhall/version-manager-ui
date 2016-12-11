@@ -9,7 +9,7 @@ machine:
 dependencies:
     override:
         - npm install
-        - bin/fix-ci-vm.sh
+        - sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update
 
 test:
     override:
