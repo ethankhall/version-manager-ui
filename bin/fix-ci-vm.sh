@@ -11,7 +11,3 @@ source ~/.bashrc
 export CLOUDSDK_CORE_DISABLE_PROMPTS=0
 
 gcloud --quiet components update
-
-echo $GOOGLE_CLIENT_SECRET | base64 --decode > ${HOME}/client-secret.json
-gcloud auth activate-service-account --key-file ${HOME}/client-secret.json
-gcloud config set project $GCLOUD_PROJECT
