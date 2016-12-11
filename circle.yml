@@ -1,0 +1,19 @@
+machine:
+    java:
+        version: oraclejdk8
+    services:
+        - docker
+    node:
+        version: 7.2.1
+
+test:
+    override:
+        - ./gradlew buildAngularContainer --console=plain
+
+deployment:
+    master:
+        branch: master
+        commands:
+            - bin/fix-ci-vm.sh
+            - ./gradlew claimVersion --refresh-dependencies  --console=plain
+            - ./gradlew pushAngularContainer --console=plain

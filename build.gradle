@@ -1,7 +1,25 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            url 'http://repo.ehdev.io/maven2'
+        }
+    }
+    dependencies {
+        classpath 'io.ehdev.conrad.client:gradle-client:+'
+    }
+}
+
 import org.gradle.api.tasks.Copy
 import org.gradle.api.tasks.Exec
 
 apply plugin: 'base'
+apply plugin: 'version-manager'
+
+versionManager {
+    projectName = 'ethankhall'
+    repoName = 'version-manager-ui'
+}
 
 task npmInstall(type: Exec) {
     inputs.files(file('package.json'))
@@ -28,13 +46,15 @@ task prepairAngularPackage(type: Copy) {
 }
 
 task buildAngularContainer(type: Exec) {
+    inputs.property('version', version)
     dependsOn prepairAngularPackage
     commandLine "docker build --tag us.gcr.io/crom-1289/crom-www:v$version .".split(' ')
-    workingDir file('crom-www')
+    workingDir file('docker')
 }
 
 task pushAngularContainer(type: Exec) {
+    inputs.property('version', version)
     dependsOn buildAngularContainer
     commandLine "gcloud docker -- push us.gcr.io/crom-1289/crom-www:v$version".split(' ')
-    workingDir file('crom-www')
+    workingDir file('docker')
 }
