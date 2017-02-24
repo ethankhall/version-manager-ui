@@ -13,7 +13,7 @@ export class UserService {
     getUserWatches(): Promise<string[]> {
         if(this.authService.isLoggedIn()) {
             let headers = this.authService.createAuthHeaders();
-            return this.http.get(this.baseUrl.createFullUrl("/api/v1/user/watches"), { headers: headers })
+            return this.http.get(this.baseUrl.createFullUrl("/api/v1/user/watch"), { headers: headers })
                 .toPromise()
                 .then(request => (request.json().watches as Watch[]).map(watch => watch.projectName))
                 .catch(UserService.handleError);

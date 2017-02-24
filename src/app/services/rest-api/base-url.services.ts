@@ -17,6 +17,8 @@ export class BaseUrlService {
             this.baseUrl = localStorage.getItem(this.storageName);
         } else if (window.location.hostname == "beta-www.crom.tech") {
             this.baseUrl = "http://beta-api.crom.tech";
+        } else if (window.location.hostname == "beta-api.crom.tech") {
+            this.baseUrl = "http://beta-api.crom.tech";
         } else if (window.location.hostname == "www.crom.tech" || window.location.hostname == "crom.tech") {
             this.baseUrl = "http://api.crom.tech";
         } else if (!(window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")) {
